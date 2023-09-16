@@ -4,11 +4,10 @@ const userController = {};
 
 userController.addUser = (req, res, next) => {
     const { username, password } = req.body;
+    console.log('req body:', req.body);
     User.create({
         username: username,
         password: password,
-        favoriteMovies: [],
-        watchList: []
     })
         .then(() => {
             return next();
@@ -24,6 +23,7 @@ userController.addUser = (req, res, next) => {
 
 userController.login = (req, res, next) => {
     const { username, password } = req.body;
+    console.log('req body 2:', req.body)
     User.find({
         username: username,
         password: password
@@ -31,6 +31,7 @@ userController.login = (req, res, next) => {
         .then((data) => {
             if (!data || data.length === 0) return res.status(400).json({err: 'student not found'});
             res.locals.user = data;
+            return next();
         })
         .catch((err) => {
             return next({

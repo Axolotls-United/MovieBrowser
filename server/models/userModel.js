@@ -19,8 +19,8 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     username: {type: String, unique: true},
     password: String,
-    favoriteMovies: Array,
-    watchList: Array
+    favoriteMovies: {type: Array, default: []},
+    watchList: {type: Array, default: []}
 });
 
 const User = mongoose.model('user', userSchema);

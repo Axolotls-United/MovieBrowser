@@ -23,8 +23,8 @@ const Schema = mongoose.Schema;
 //Username must not be a duplicate from previous users
 //favoriteMovies and watchList will default to empty arrays and do not need to be passed in when creating
 const userSchema = new Schema({
-    username: {type: String, unique: true},
-    password: String,
+    username: {type: String, unique: true, required: true},
+    password: {type: String, unique: true, required: true},
     favoriteMovies: {type: Array, default: []},
     watchList: {type: Array, default: []}
 });

@@ -1,33 +1,25 @@
 import React from "react";
 
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Form';
+// import Button from 'react-bootstrap/Button';
+// import Form from 'react-bootstrap/Form';
+// import Col from 'react-bootstrap/Form';
 
 import { useState } from "react";
 
 import { setList, setSearch } from "../reducers/searchSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-// import axios from 'axios';
+
+import {Input} from "@nextui-org/react";
+import {Button} from "@nextui-org/react";
+
 
 
 const SearchBar = () => {
   const searchText = useSelector(state => state.searches.search);
-  // const [search, setSearch] = useState('');
-
-  // const [listSearches, setListSearches] = useState([]);
-
-  // GET REQUEST API 
-
-  // setListSearches(fetch(`http://www.omdbapi.com/?apikey=d20b14af&page=3&s=${search}`).then(data => data.json()))
-
-  // res = `http://www.omdbapi.com/?apikey=d20b14af&page=3&s=${search}`
-  // set state listsearches ( response )
-
+  
   const dispatch = useDispatch();
 
-  // onChangeHandler
   const onChangeHandler = (e) => {
     dispatch(setSearch(e.currentTarget.value));
   }
@@ -41,15 +33,21 @@ const SearchBar = () => {
   }
   
   return (
-    <div>
-      <Form>
-        <Form.Group className="mb-3" >
-          <Form.Control type="text" placeholder="Search For Movie" onChange={(e) => onChangeHandler(e)}/>
-        </Form.Group>
-        <Button variant="primary" type="submit" onClick={(e) => onClickHandler(e)}>
-          Submit
-        </Button >
-      </Form>
+    // <div>
+    //   <Form>
+    //     <Form.Group className="mb-3" >
+    //       <Form.Control type="text" placeholder="Search For Movie" onChange={(e) => onChangeHandler(e)}/>
+    //     </Form.Group>
+    //     <Button variant="primary" type="submit" onClick={(e) => onClickHandler(e)}>
+    //       Submit
+    //     </Button >
+    //   </Form>
+    // </div>
+    <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
+      <Input type="text" placeholder="Search Movie" onChange={(e) => onChangeHandler(e)} />
+      <Button color="primary" onClick={(e) => onClickHandler(e)}>
+      Button
+    </Button>
     </div>
   )
 }

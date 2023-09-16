@@ -11,7 +11,6 @@ const router = express.Router();
 //check middleware for more info 
 router.post('/signup',
     userController.addUser,
-    userController.login,
     (req, res) => res.status(201).json(res.locals.user)
 );
 
@@ -35,12 +34,12 @@ router.delete('/deleteFavorite',
     (req, res) => res.status(200).json({message: 'Successfully deleted'})
 );
 
-router.post('/addFavorite',
+router.post('/addWatch',
     userController.addWatch,
     (req, res) => res.status(200).json(res.locals.addedMovie)
 );
 
-router.delete('/deleteFavorite',
+router.delete('/deleteWatch',
     userController.deleteWatch,
     (req, res) => res.status(200).json({message: 'Successfully deleted'})
 );

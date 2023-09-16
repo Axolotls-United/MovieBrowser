@@ -16,7 +16,8 @@ userController.addUser = (req, res, next) => {
         username: username,
         password: password,
     })
-        .then(() => {
+        .then((data) => {
+            res.locals.user = data;
             return next();
         })
         .catch((err) => {

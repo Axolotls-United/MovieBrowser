@@ -5,7 +5,8 @@ import { createRoot } from 'react-dom/client';
 import { store } from './stores.js';
 import App from './App.jsx';
 // import { CookiesProvider } from 'react-cookie';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'tailwindcss/tailwind.css';
 
 
 

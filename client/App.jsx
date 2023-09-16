@@ -5,8 +5,11 @@ import React from 'react';
 import Home from './pages/Home.jsx';
 import Profile from './pages/Profile.jsx';
 import Logout from './pages/Logout.jsx';
-import { Routes, Route, Link } from 'react-router-dom';
 import Nav from './pages/Nav.jsx';
+import Login from './pages/Login.jsx';
+import Signup from './pages/Signup.jsx';
+import { Routes, Route, Link } from 'react-router-dom';
+import ProtectedRoutes from './ProtectedRoutes.jsx';
 
 
 // import Nav from './pages/Nav.jsx';
@@ -20,36 +23,18 @@ import Nav from './pages/Nav.jsx';
 
 const App = () => {
 
-  // const router = createBrowserRouter([
-  //   {
-  //     path: "/",
-  //     element: (
-  //       <div>
-  //         <Link to='profile'></Link>
-  //         <Link to='logout'></Link>
-  //         <Home />
-  //       </div>
-  //     ),
-  //   },
-  //   {
-  //     path: "profile",
-  //     element: <Profile />
-  //   },
-  //   {
-  //     path: "logout",
-  //     element: <Logout />
-  //   },
-  // ]);
-
   return(
     <>
     <Nav />
     <Routes>
       <Route path='/' element={<Home />}/>
-      <Route path='/profile' element={<Profile />}/>
-      <Route path='/logout' element={<Logout />}/>
+      <Route path='/login' element={<Login />}/>
+      <Route path='/signup' element={<Signup />}/>
+      <Route element={<ProtectedRoutes/>}>
+        <Route path='/profile' element={<Profile />}/>
+        <Route path='/logout' element={<Logout />}/>
+      </Route>
     </Routes>
-    {/* <RouterProvider router={router} /> */}
     </>
   );
 }

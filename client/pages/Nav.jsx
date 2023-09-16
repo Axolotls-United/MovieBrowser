@@ -8,9 +8,15 @@ const Nav = () => {
     <nav>
       <ul>
         <li>
-        <Link to='profile'>Profile</Link>
+          <Link to='/'>Home</Link>
         </li>
-        </ul>   
+        <li>
+          <Link to='/profile'>Profile</Link>
+        </li>
+        <li>
+          <Link to='/logout'>Logout</Link>
+        </li>
+      </ul>
     </nav>
   )
 }

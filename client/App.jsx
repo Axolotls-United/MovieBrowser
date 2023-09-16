@@ -6,6 +6,7 @@ import Home from './pages/Home.jsx';
 import Profile from './pages/Profile.jsx';
 import Logout from './pages/Logout.jsx';
 import { Routes, Route, Link } from 'react-router-dom';
+import Nav from './pages/Nav.jsx';
 
 
 // import Nav from './pages/Nav.jsx';
@@ -42,19 +43,7 @@ const App = () => {
 
   return(
     <>
-    <div>
-      <ul>
-        <li>
-          <Link to='/'>Home</Link>
-        </li>
-        <li>
-          <Link to='/profile'>Profile</Link>
-        </li>
-        <li>
-          <Link to='/logout'>Logout</Link>
-        </li>
-      </ul>
-    </div>
+    <Nav />
     <Routes>
       <Route path='/' element={<Home />}/>
       <Route path='/profile' element={<Profile />}/>

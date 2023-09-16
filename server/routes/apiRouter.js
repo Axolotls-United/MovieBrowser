@@ -16,4 +16,6 @@ router.get('/narrowSearch',
   (req, res) => {return res.status(200).json(res.locals.list)}
 );
 
+
+
 module.exports = router;

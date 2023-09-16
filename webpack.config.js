@@ -25,10 +25,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader',{loader: 'css-loader', options: {
-          importLoaders: 1,
-          modules: true,
-        }}]
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
@@ -36,7 +33,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'home',
       filename: 'index.html',
-      template: './htmlFiles/index.html'
+      template: './client/index.html'
     })
   ],
   devServer: {
@@ -49,5 +46,11 @@ module.exports = {
     // }
   }
 };
+
+
+// use: ['style-loader',{loader: 'css-loader', options: {
+//   importLoaders: 1,
+//   modules: true,
+// }}]
 
 // /\.(s(a|c)ss)$/

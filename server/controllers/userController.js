@@ -11,6 +11,7 @@ userController.addUser = (req, res, next) => {
     const { username, password } = req.body;
 
     //use create to create and save new User document on the database 
+
     User.create({
         username: username,
         password: password,
@@ -29,6 +30,7 @@ userController.addUser = (req, res, next) => {
 
 
 //check database for existing user with info on req.body
+//if its there pass it in on locals under user
 userController.login = (req, res, next) => {
     const { username, password } = req.body;
     User.find({

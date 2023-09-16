@@ -2,9 +2,15 @@ const { User } = require('../models/userModel');
 
 const userController = {};
 
+
+//store a new user with data from req.body
+//note that there are two arrays on users, favoriteMovies and watchList
+//but they default to empty arrays, see /models/userModel.js
 userController.addUser = (req, res, next) => {
+    //destructure req.body params
     const { username, password } = req.body;
-    console.log('req body:', req.body);
+
+    //use create to create and save new User document on the database 
     User.create({
         username: username,
         password: password,
@@ -21,9 +27,10 @@ userController.addUser = (req, res, next) => {
         })
 }
 
+
+//check database for existing user with info on req.body
 userController.login = (req, res, next) => {
     const { username, password } = req.body;
-    console.log('req body 2:', req.body)
     User.find({
         username: username,
         password: password

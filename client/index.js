@@ -1,15 +1,12 @@
 import React from 'react';
-// import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-// import { Provider } from 'react-redux';
-// import { CookiesProvider } from 'react-cookie';
-// import { store } from './stores';
-import App from './App.jsx';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-
+import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
+import { store } from './stores.js';
+import App from './App.jsx';
+// import { CookiesProvider } from 'react-cookie';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'tailwindcss/tailwind.css';
 
 
 
@@ -17,7 +14,9 @@ const root = createRoot(document.getElementById('app'));
 
 root.render(
   <BrowserRouter>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </BrowserRouter>
 );
 

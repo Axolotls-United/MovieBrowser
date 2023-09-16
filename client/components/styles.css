@@ -1,0 +1,10 @@
+.movie-list-container, .favorites-list-container, .favorites-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+  margin: 2rem;
+}
+
+.movie-card, .favorites-card, .favorites-card{
+  margin: 1rem;
+}
+

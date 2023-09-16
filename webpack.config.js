@@ -25,7 +25,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader', "postcss-loader"]
       }
     ]
   },
@@ -39,11 +39,12 @@ module.exports = {
   devServer: {
     static: {
       publicPath: '/dist',
-      directory: path.resolve(__dirname, 'dist') 
+      directory: path.resolve(__dirname, 'dist')
+    },
+    proxy: {
+      '/': 'http://localhost:3000',
+      '/user/login': 'http://localhost:3000'
     }
-    // proxy: {
-    //   '/': 'http://localhost:3000'
-    // }
   }
 };
 

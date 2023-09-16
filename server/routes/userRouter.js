@@ -35,5 +35,15 @@ router.delete('/deleteFavorite',
     (req, res) => res.status(200).json({message: 'Successfully deleted'})
 );
 
+router.post('/addFavorite',
+    userController.addWatch,
+    (req, res) => res.status(200).json(res.locals.addedMovie)
+);
+
+router.delete('/deleteFavorite',
+    userController.deleteWatch,
+    (req, res) => res.status(200).json({message: 'Successfully deleted'})
+);
+
 
 module.exports = router;

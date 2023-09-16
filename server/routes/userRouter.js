@@ -24,4 +24,16 @@ router.post('/login',
     (req, res) => res.status(200).json(res.locals.user)
 );
 
+
+router.post('/addFavorite',
+    userController.addFavorite,
+    (req, res) => res.status(200).json(res.locals.addedMovie)
+);
+
+router.delete('/deleteFavorite',
+    userController.deleteFavorite,
+    (req, res) => res.status(200).json({message: 'Successfully deleted'})
+);
+
+
 module.exports = router;

@@ -52,4 +52,42 @@ userController.login = (req, res, next) => {
 }
 
 
+userController.addFavorite = (req, res, next) => {
+    const { movie, username } = req.body;
+    User.updateOne(
+        {username: username},
+        {$push: {favoriteMovies: movie}}
+    )   
+        .then((data) => {
+            res.locals.addedMovie = data
+            return next();
+        })
+        .catch((err) => {
+            return next({
+                log: 'error adding movie to user',
+                status: 400,
+                message: {err: 'Could not add a movie to user'}
+            });
+        })
+}
+
+userController.deleteFavorite = (req, res, next) => {
+    const {title, username} = req.query;
+    console.log(req.params);
+    User.updateOne(
+        {username: username},
+        { $pull: { favoriteMovies: { Title: title } } }
+    )
+        .then(() => {
+            return next();
+        })
+        .catch((err) => {
+            return next({
+                log: 'error deleting movie from users favorite movies',
+                status: 400,
+                message: {err: 'could not delete movie from favoriteMovies'}
+            })
+        })
+}
+
 module.exports = userController;

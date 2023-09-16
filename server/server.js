@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-const apiRouter = require('./routes/api')
+const apiRouter = require('./routes/apiRouter');
+const userRouter = require('./routes/userRouter');
 
 app.use(express.json());
 
@@ -10,6 +11,10 @@ app.use(express.static('public'));
 
 
 app.use('/api', apiRouter);
+
+app.use('/user', userRouter);
+
+
 
 // catch all
 app.use((req, res) => res.status(404).send('Wrong page. Go away.'));

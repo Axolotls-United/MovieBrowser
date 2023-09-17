@@ -33,19 +33,10 @@ const SearchBar = () => {
   }
   
   return (
-    // <div>
-    //   <Form>
-    //     <Form.Group className="mb-3" >
-    //       <Form.Control type="text" placeholder="Search For Movie" onChange={(e) => onChangeHandler(e)}/>
-    //     </Form.Group>
-    //     <Button variant="primary" type="submit" onClick={(e) => onClickHandler(e)}>
-    //       Submit
-    //     </Button >
-    //   </Form>
-    // </div>
-    <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-      <Input type="text" placeholder="Search Movie" onChange={(e) => onChangeHandler(e)} />
-      <Button color="primary" onClick={(e) => onClickHandler(e)}>
+  
+    <div className="flex gap-4" >
+      <Input className="max-w-[220px]" type="text" placeholder="Search Movie" onChange={(e) => onChangeHandler(e)} />
+      <Button color="primary" size="md" variant="ghost" onClick={(e) => onClickHandler(e)} >
       Button
     </Button>
     </div>

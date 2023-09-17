@@ -1,0 +1,5 @@
+.nav-link {
+  color: inherit; /* Inherit text color */
+  text-decoration: none; /* Remove underline */
+  /* Add other styling as needed */
+}

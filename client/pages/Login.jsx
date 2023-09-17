@@ -56,7 +56,7 @@ const Login = () => {
   }
 
   return (
-    <>
+    <div>
     <Input
       isRequired
       type="username"
@@ -72,13 +72,14 @@ const Login = () => {
       className="max-w-xs"
       onChange={(e) => dispatchPassword(e)}
     />
+  
     <Button color="primary" onClick={requestLogin}>
       Login
     </Button>
     <Button color="primary" onClick={redirectSignup}>
       Sign Up
     </Button>
-    </>
+    </div>
     
   )
 }

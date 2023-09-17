@@ -40,6 +40,13 @@ export const userSlice = createSlice({
     addWatchList: (state, action) => {
       state.watchList.push(action.payload)
     },
+    deleteWatchList: (state, action) => {
+      for(let i = 0; i < state.watchList.length; i++) {
+        if(state.watchList[i].title === action.payload) {
+          state.watchList.splice(i,1);
+        }
+      }
+    },
     logout: (state, action) => {
       state.user = null;
       state.favList = [];
@@ -49,6 +56,6 @@ export const userSlice = createSlice({
   }
 });
 
-export const { setUser, setUsername, setPassword, setFavList, addFavList, deleteFavList, setWatchList, addWatchList, logout } = userSlice.actions;
+export const { setUser, setUsername, setPassword, setFavList, addFavList, deleteFavList, setWatchList, addWatchList, deleteWatchList, logout } = userSlice.actions;
 
 export default userSlice.reducer;

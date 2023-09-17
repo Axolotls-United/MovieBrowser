@@ -1,10 +1,20 @@
-.movie-list-container, .favorites-list-container, .favorites-list-container {
+.movie-list-container, .favorites-list-container, .watchlist-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
   margin: 2rem;
 }
 
-.movie-card, .favorites-card, .favorites-card{
+.movie-card, .favorites-card, .watchlist-card{
   margin: 1rem;
 }
 
+.favorites-list-container, .watchlist-container {
+  border: 5px solid rgb(158, 97, 97);
+  border-radius: 15px;
+}
+
+
+/* .movie-card:click {
+  transform: rotateY( 180deg ) ;
+  transition: transform 0.5s;
+} */

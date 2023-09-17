@@ -73,11 +73,11 @@ userController.addFavorite = (req, res, next) => {
 }
 
 userController.deleteFavorite = (req, res, next) => {
-    const {title, username} = req.query;
-    console.log(req.params);
-    User.updateOne(
+    const {title, username} = req.body;
+    console.log(req.body);
+    User.findOneAndUpdate(
         {username: username},
-        { $pull: { favoriteMovies: { Title: title } } }
+        { $pull: { favoriteMovies: { title: title } } }
     )
         .then(() => {
             return next();
@@ -113,11 +113,11 @@ userController.addWatch = (req, res, next) => {
 
 
 userController.deleteWatch = (req, res, next) => {
-    const {title, username} = req.query;
+    const {title, username} = req.body;
     console.log(req.params);
     User.updateOne(
         {username: username},
-        { $pull: { watchList: { Title: title } } }
+        { $pull: { watchList: { title: title } } }
     )
         .then(() => {
             return next();

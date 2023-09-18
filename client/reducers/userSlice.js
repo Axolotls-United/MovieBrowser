@@ -23,9 +23,15 @@ export const userSlice = createSlice({
       state.username = action.payload;
       console.log(state.username);
     },
+    resetUsername: (state, action) => {
+      state.username = '';
+    },
     setPassword: (state, action) => {
       state.password = action.payload;
       console.log(state.password);
+    },
+    resetPassword: (state, action) => {
+      state.password = '';
     },
     addFavList: (state, action) => {
       state.favList.push(action.payload)
@@ -56,6 +62,19 @@ export const userSlice = createSlice({
   }
 });
 
-export const { setUser, setUsername, setPassword, setFavList, addFavList, deleteFavList, setWatchList, addWatchList, deleteWatchList, logout } = userSlice.actions;
+export const { 
+  setUser, 
+  setUsername, 
+  resetUsername,
+  setPassword, 
+  resetPassword,
+  setFavList, 
+  addFavList, 
+  deleteFavList, 
+  setWatchList, 
+  addWatchList, 
+  deleteWatchList, 
+  logout 
+} = userSlice.actions;
 
 export default userSlice.reducer;

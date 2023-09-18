@@ -11,7 +11,7 @@ import { logout } from "../reducers/userSlice";
 const Nav = () => {
   const isAuth = useSelector(state => state.users.isAuth);
   const dispatch = useDispatch();
-
+  const user = useSelector(state => state.users.user);
   const dispatchLogout = () => {
     dispatch(logout());
   }
@@ -19,7 +19,7 @@ const Nav = () => {
   return (
     <Navbar >
       <NavbarBrand justify="start">
-        <p className="font-bold text-inherit">Movie Browser</p>
+        <p className="font-bold text-inherit brand-name">Movie Browser</p>
       </NavbarBrand>
       <NavbarContent justify="center">
         <NavbarItem>
@@ -29,6 +29,9 @@ const Nav = () => {
     
     {isAuth ? 
       <NavbarContent justify="end">
+        <NavbarItem>
+          <h1>Hello, {user.username} </h1>
+        </NavbarItem>
         <NavbarItem>
           <Link to='/profile'>Profile</Link>
         </NavbarItem>

@@ -3,7 +3,7 @@ import React from "react";
 import {Input} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUsername, setPassword, setUser } from "../reducers/userSlice";
+import { setUsername, resetUsername, setPassword, resetPassword, setUser } from "../reducers/userSlice";
 import { useNavigate } from "react-router-dom";
 
 // import {EyeFilledIcon} from "./EyeFilledIcon";
@@ -39,8 +39,15 @@ const Signup = () => {
         password
       })
     }).then(data => data.json());
-    dispatch(setUser(user));
-    redirectProfile();
+
+    if (user.err) {
+      dispatch(resetUsername());
+      dispatch(resetPassword());
+      alert('Error creating new user. \n Perhaps username is taken');
+    } else {
+      dispatch(setUser(user));
+      redirectProfile();
+    }
   }
 
   return (
@@ -50,6 +57,7 @@ const Signup = () => {
       type="username"
       label="Username"
       className="max-w-xs"
+      value={username}
       onChange={(e) => dispatchUsername(e)}
     />
     <Input
@@ -58,6 +66,7 @@ const Signup = () => {
       placeholder="Enter your password"
       type= "password"
       className="max-w-xs"
+      value={password}
       onChange={(e) => dispatchPassword(e)}
     />
     <Button color="primary" onClick={requestSignup}>

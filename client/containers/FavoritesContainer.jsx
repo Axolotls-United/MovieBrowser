@@ -3,6 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import FavoritesComponent from "../components/FavoritesComponent.jsx";
+import { deleteFavList } from "../reducers/userSlice";
 
 const FavoritesContainer = (props) => {
 
@@ -12,7 +13,14 @@ const FavoritesContainer = (props) => {
   return (
     <div className="favorites-list-container">
     
-      {userFavList.map(movie => <FavoritesComponent key={crypto.randomUUID()} title={movie.title} image={movie.image}/>)}
+      {userFavList.map(movie => 
+        <FavoritesComponent 
+          key={crypto.randomUUID()} 
+          deleteFavList={deleteFavList}
+          username={props.username} 
+          title={movie.title} 
+          image={movie.image}
+        />)}
     </div>
   )
 }

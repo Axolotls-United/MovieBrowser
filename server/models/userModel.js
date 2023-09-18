@@ -24,7 +24,7 @@ const Schema = mongoose.Schema;
 //favoriteMovies and watchList will default to empty arrays and do not need to be passed in when creating
 const userSchema = new Schema({
     username: {type: String, unique: true, required: true},
-    password: {type: String, unique: true, required: true},
+    password: {type: String, required: true},
     favoriteMovies: {type: Array, default: []},
     watchList: {type: Array, default: []}
 });

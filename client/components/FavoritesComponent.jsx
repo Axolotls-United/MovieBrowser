@@ -4,13 +4,13 @@ import {Card, CardFooter, Image, Button} from "@nextui-org/react";
 
 
 import './styles.css';
-import { deleteFavList } from "../reducers/userSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 
 const FavoritesComponent = (props) => {
   const dispatch = useDispatch();
-  const username = useSelector(state => state.users.username);
+  const username = props.username;
+  const deleteFavList = props.deleteFavList;
   async function dispatchRemoveFavorites() {
     const body = {
       username,

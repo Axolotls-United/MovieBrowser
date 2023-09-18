@@ -9,7 +9,8 @@ const MovieContainer = (props) => {
 
   return (
     <div className="movie-list-container">
-      {moviesList.map(movie => <MovieComponent key={crypto.randomUUID()} title={movie.Title} image={movie.Poster} imdbId ={movie.imdbId}/>)}
+      {moviesList.map(movie => 
+      <MovieComponent key={crypto.randomUUID()} title={movie.Title} image={movie.Poster} imdbId ={movie.imdbId}/>)}
     </div>
   )
 }

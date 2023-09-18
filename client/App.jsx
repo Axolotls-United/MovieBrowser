@@ -10,8 +10,9 @@ import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import { Routes, Route, Link } from 'react-router-dom';
 import ProtectedRoutes from './ProtectedRoutes.jsx';
-
-
+import { useEffect } from 'react';
+import { setUser } from './reducers/userSlice.js'
+import { useDispatch } from "react-redux";
 // import Nav from './pages/Nav.jsx';
 
 // import {
@@ -22,6 +23,25 @@ import ProtectedRoutes from './ProtectedRoutes.jsx';
 // } from "react-router-dom";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log('running useEffect')
+    fetch('/user/session', {
+      method: 'GET',
+      credentials: 'include'
+    })
+      .then(data => data.json())
+      .then((data) => {
+        if (data.watchList) {
+          dispatch(setUser(data))
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, []);
+
 
   return(
     <>

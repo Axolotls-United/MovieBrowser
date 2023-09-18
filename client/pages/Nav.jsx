@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button} from "@nextui-org/react";
@@ -15,7 +15,6 @@ const Nav = () => {
   const dispatchLogout = () => {
     dispatch(logout());
   }
-
 
   return (
     <Navbar >

@@ -18,6 +18,13 @@ router.post('/signup',
     (req, res) => res.status(201).json(res.locals.user)
 );
 
+
+router.get('/session',
+    sessionController.verifySession,
+    userController.findUserById,
+    (req, res) => res.status(200).json(res.locals.foundUser)
+);
+
 //log in with passed in username and password on body
 //returns existing User with all attatched data
 

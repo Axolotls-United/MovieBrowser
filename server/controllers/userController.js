@@ -39,30 +39,31 @@ userController.addUser = (req, res, next) => {
 
 }
 
+userController.findUserById = (req, res, next) => {
+    const id = res.locals.session;
 
-//check database for existing user with info on req.body
-// //if its there pass it in on locals under user
-// userController.login = (req, res, next) => {
-//     const { username, password } = req.body;
-//     User.find({
-//         username: username,
-//         password: password
-//     })
-//         .then((data) => {
-//             if (!data || data.length === 0) return res.status(400).json({err: 'student not found'});
-//             res.locals.user = data;
-//             return next();
-//         })
-//         .catch((err) => {
-//             return next({
-//                 log: 'User now found',
-//                 status: 400,
-//                 message: {err: 'Could not find user in db, check logs for more info'}
-//             });
-//         });
-// }
+    User.findOne({_id: id})
+        .then((data) => {
+            if (!data) {
+                return next({
+                    log: ' error finding by id',
+                    status: 404,
+                    message: {err: 'error finding by id'}
+                });
+            }
+            res.locals.foundUser = data;
+            console.log('data in find by ID:', data);
+            return next();
+        })
+        .catch((err) => {
+            return next({
+                log: ' error finding by id',
+                status: 500,
+                message: {err: 'error finding by id'}
+            });
+        })
 
-
+}
 
 userController.login = (req, res, next) => {
     const { username, password } = req.body;

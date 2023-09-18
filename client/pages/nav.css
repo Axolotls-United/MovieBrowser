@@ -3,3 +3,9 @@
   text-decoration: none; /* Remove underline */
   /* Add other styling as needed */
 }
+
+.brand-name {
+  font-size: x-large;
+  font-style: italic;
+  font-weight: 500;
+}

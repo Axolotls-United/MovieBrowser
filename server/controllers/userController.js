@@ -11,24 +11,32 @@ userController.addUser = (req, res, next) => {
   const { username, password } = req.body;
 
     //use create to create and save new User document on the database 
-  bcrypt.hash(password, 10)
-    .then((hashedPassword) => {
-        return User.create({
+  bcrypt.hash(password, 10, (err, hashedPassword) => {
+    if (err || !hashedPassword) {
+        return next({
+            log: 'Error signing up',
+            status: 500,
+            message: { err: 'error signing up with new info' },
+         });
+     }
+    User.create({
         username: username,
         password: hashedPassword,
-        });
     })
-    .then((data) => {
-        res.locals.user = data;
-        return next();
-    })
-    .catch((err) => {
-        return next({
-        log: 'Error signing up',
-        status: 500,
-        message: { err: 'error signing up with new info' },
-        });
-    });
+        .then((data) => {
+            console.log(data);
+            res.locals.user = data;
+            return next();
+        })
+        .catch((err) => {
+            return next({
+                log: 'Error signing up',
+                status: 500,
+                message: { err: 'error signing up with new info' },
+             });
+        })
+  });
+
 }
 
 
@@ -58,12 +66,13 @@ userController.addUser = (req, res, next) => {
 
 userController.login = (req, res, next) => {
     const { username, password } = req.body;
-    User.find({
+    User.findOne({
         username: username
-    })
+    })  
         .then((data) => {
-            if (!data || data.length === 0) return res.status(400).json({err: 'student not found'});
-            bcrypt.compare(password, data[0].password, (err, result) => {
+            if (!data) return res.status(400).json({err: 'student not found'});
+            console.log(data)
+            bcrypt.compare(password, data.password, (err, result) => {
                 if (err || !result) {
                     return next({
                         log: 'Incorrect username or password',

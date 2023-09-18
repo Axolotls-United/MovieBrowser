@@ -13,6 +13,8 @@ const router = express.Router();
 //check middleware for more info 
 router.post('/signup',
     userController.addUser,
+    cookieController.setSSIDCookie,
+    sessionController.createSession,
     (req, res) => res.status(201).json(res.locals.user)
 );
 

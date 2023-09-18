@@ -14,9 +14,9 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      state.user = action.payload[0];
-      state.favList = action.payload[0].favoriteMovies;
-      state.watchList = action.payload[0].watchList;
+      state.user = action.payload;
+      state.favList = action.payload.favoriteMovies;
+      state.watchList = action.payload.watchList;
       state.isAuth = true;
     },
     setUsername: (state, action) => {

@@ -3,8 +3,8 @@ const { Session } = require('../models/sessionModel');
 const sessionController = {};
 
 sessionController.createSession = (req, res, next) => {
-  console.log("id in sessioncraetor:", res.locals.user[0].id);
-  Session.create({cookieId: res.locals.user[0].id})
+  console.log("id in sessioncraetor:", res.locals.user.id);
+  Session.create({cookieId: res.locals.user.id})
     .then(() => {
       return next()
     })

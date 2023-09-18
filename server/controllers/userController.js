@@ -1,5 +1,5 @@
 const { User } = require('../models/userModel');
-
+const bcrypt = require('bcrypt');
 const userController = {};
 
 
@@ -8,40 +8,73 @@ const userController = {};
 //but they default to empty arrays, see /models/userModel.js
 userController.addUser = (req, res, next) => {
     //destructure req.body params
-    const { username, password } = req.body;
+  const { username, password } = req.body;
 
     //use create to create and save new User document on the database 
-
-    User.create({
+  bcrypt.hash(password, 10)
+    .then((hashedPassword) => {
+        return User.create({
         username: username,
-        password: password,
+        password: hashedPassword,
+        });
     })
-        .then((data) => {
-            res.locals.user = data;
-            return next();
-        })
-        .catch((err) => {
-            return next({
-                log: 'Error signing up',
-                status: 500,
-                message: {err: 'error signing up with new info'}
-              });
-        })
+    .then((data) => {
+        res.locals.user = data;
+        return next();
+    })
+    .catch((err) => {
+        return next({
+        log: 'Error signing up',
+        status: 500,
+        message: { err: 'error signing up with new info' },
+        });
+    });
 }
 
 
 //check database for existing user with info on req.body
-//if its there pass it in on locals under user
+// //if its there pass it in on locals under user
+// userController.login = (req, res, next) => {
+//     const { username, password } = req.body;
+//     User.find({
+//         username: username,
+//         password: password
+//     })
+//         .then((data) => {
+//             if (!data || data.length === 0) return res.status(400).json({err: 'student not found'});
+//             res.locals.user = data;
+//             return next();
+//         })
+//         .catch((err) => {
+//             return next({
+//                 log: 'User now found',
+//                 status: 400,
+//                 message: {err: 'Could not find user in db, check logs for more info'}
+//             });
+//         });
+// }
+
+
+
 userController.login = (req, res, next) => {
     const { username, password } = req.body;
     User.find({
-        username: username,
-        password: password
+        username: username
     })
         .then((data) => {
             if (!data || data.length === 0) return res.status(400).json({err: 'student not found'});
-            res.locals.user = data;
-            return next();
+            bcrypt.compare(password, data[0].password, (err, result) => {
+                if (err || !result) {
+                    return next({
+                        log: 'Incorrect username or password',
+                        status: 400,
+                        message: {err: 'incorrect username or password'}
+                    });
+                }
+                res.locals.user = data;
+                return next();
+                
+            })
         })
         .catch((err) => {
             return next({

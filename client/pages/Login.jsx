@@ -47,7 +47,7 @@ const Login = () => {
       alert('Incorrect username or password');
     } else {
       dispatch(setUser(user));
-      console.log(user);
+      console.log('USER USER:', user);
       redirectProfile();
     }
   }

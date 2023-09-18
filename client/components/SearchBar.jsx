@@ -35,7 +35,7 @@ const SearchBar = () => {
   return (
   
     <div className="flex gap-4" >
-      <Input className="max-w-[220px]" type="text" placeholder="Search Movie" onChange={(e) => onChangeHandler(e)} />
+      <Input className="search-form" type="text" placeholder="Search Movie" onChange={(e) => onChangeHandler(e)} />
       <Button color="primary" size="md" variant="ghost" onClick={(e) => onClickHandler(e)} >
       Button
     </Button>

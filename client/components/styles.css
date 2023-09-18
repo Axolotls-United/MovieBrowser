@@ -1,11 +1,13 @@
 .movie-list-container, .favorites-list-container, .watchlist-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
-  margin: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: repeat(auto-fill, 400px);
 }
 
+
 .movie-card, .favorites-card, .watchlist-card{
-  margin: 1rem;
+  height: 300px;
+  width: 200px;
 }
 
 .favorites-list-container, .watchlist-container {
@@ -14,7 +16,61 @@
 }
 
 
-/* .movie-card:click {
-  transform: rotateY( 180deg ) ;
-  transition: transform 0.5s;
+.flip-card {
+  background-color: transparent;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px; 
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  color: black;
+}
+
+.flip-card-back {
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.flip-card-back p {
+  padding-top: 60px;
+}
+
+.movie-title{
+  color: black;
+  font-weight: 900;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+}
+
+
+
+
+
+/* @media only screen and (max-width: 600px) {
+.movie-list-container, .favorites-list-container, .watchlist-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(100px, 1fr));
+  grid-template-rows: repeat(auto, 400px);
+}
 } */

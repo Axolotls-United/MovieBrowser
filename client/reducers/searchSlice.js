@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   search: '',
-  moviesList: []
+  moviesList: [],
+  plot: '',
 };
 
 export const searchSlice = createSlice({
@@ -15,10 +16,13 @@ export const searchSlice = createSlice({
     setList: (state, action) => {
       state.moviesList = action.payload;
       console.log(state.moviesList);
+    },
+    setPlot: (state, action) => {
+      state.plot = action.payload
     }
   }
 });
 
-export const { setSearch, setList } = searchSlice.actions;
+export const { setSearch, setList, setPlot } = searchSlice.actions;
 
 export default searchSlice.reducer;

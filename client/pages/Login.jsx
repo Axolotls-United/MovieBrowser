@@ -63,7 +63,7 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <>
     <Input
       isRequired
       type="username"
@@ -81,7 +81,8 @@ const Login = () => {
       value={password}
       onChange={(e) => dispatchPassword(e)}
     />
-  
+    
+    <div className="flex flex-wrap gap-4 items-center">
     <Button color="primary" onClick={requestLogin}>
       Login
     </Button>
@@ -89,6 +90,8 @@ const Login = () => {
       Sign Up
     </Button>
     </div>
+   
+    </>
     
   )
 }

@@ -1,13 +1,14 @@
 .movie-list-container, .favorites-list-container, .watchlist-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-template-rows: repeat(auto-fill, 400px);
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-rows: repeat(auto-fill, 410px);
 }
 
 
 .movie-card, .favorites-card, .watchlist-card{
   height: 300px;
   width: 200px;
+  text-align: center;
 }
 
 .favorites-list-container, .watchlist-container {
@@ -23,6 +24,9 @@
 }
 
 .flip-card-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   width: 100%;
   height: 100%;
@@ -63,14 +67,41 @@
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
 }
 
+/* 
+@media only screen and (max-width: 1200px) {
+  .movie-list-container, .favorites-list-container, .watchlist-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    grid-template-rows: repeat(5, minmax(350px, 1fr));
+  }
+  } */
 
 
 
+@media only screen and (max-width: 1000px) {
+  .movie-list-container, .favorites-list-container, .watchlist-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    grid-template-rows: repeat(5, minmax(350px, 1fr));
+  }
+  }
 
-/* @media only screen and (max-width: 600px) {
+
+
+@media only screen and (max-width: 800px) {
+  .movie-list-container, .favorites-list-container, .watchlist-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    grid-template-rows: repeat(5, minmax(350px, 1fr));
+  }
+  }
+  
+
+
+@media only screen and (max-width: 600px) {
 .movie-list-container, .favorites-list-container, .watchlist-container {
   display: grid;
-  grid-template-columns: repeat(2, minmax(100px, 1fr));
-  grid-template-rows: repeat(auto, 400px);
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  grid-template-rows: repeat(5, minmax(350px, 1fr));
 }
-} */
+}

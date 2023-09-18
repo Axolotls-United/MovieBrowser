@@ -19,7 +19,7 @@ const Nav = () => {
   return (
     <Navbar >
       <NavbarBrand justify="start">
-        <p className="font-bold text-inherit">Movie Browser</p>
+        <p className="font-bold text-inherit brand-name">Movie Browser</p>
       </NavbarBrand>
       <NavbarContent justify="center">
         <NavbarItem>

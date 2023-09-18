@@ -12,8 +12,8 @@ import userSlice, { addFavList, addWatchList } from "../reducers/userSlice";
 const MovieComponent = (props) => {
   const [plot, setPlot] = useState('');
   const username = useSelector(state => state.users.username);
+  const isAuth = useSelector(state => state.users.isAuth);
   const dispatch = useDispatch();
-
   
   const movie = {
     title: props.title,
@@ -63,6 +63,19 @@ const MovieComponent = (props) => {
   return (
     <div className="flip-card">
       <h4 className="movie-title">{props.title}</h4>
+      {isAuth ?
+      <>
+        <Button color="primary" variant="bordered" size="sm" onClick={favHandler}>
+          Favorites
+        </Button>
+        <Button color="primary" variant="bordered" size="sm" onClick= {watchHandler}>
+          Watchlist
+        </Button>
+      </>
+      :
+      <>
+      </>
+      }
       <div className="flip-card-inner">
         <div className="flip-card-front">
           <Card
@@ -77,7 +90,7 @@ const MovieComponent = (props) => {
               src={props.image}
               // width={200}
             />
-            <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
+            {/* <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
             
               
               <Button className="text-tiny text-white bg-black/20" variant="flat" color="default" radius="lg" size="sm" onClick={favHandler} >
@@ -89,7 +102,7 @@ const MovieComponent = (props) => {
               </Button>
 
 
-            </CardFooter>
+            </CardFooter> */}
           </Card>
         </div>
         <div className="flip-card-back">
@@ -100,7 +113,7 @@ const MovieComponent = (props) => {
           >
             <p className="plot-text"> {plot}</p>
           
-            <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
+            {/* <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
             
               
               <Button className="text-tiny text-black bg-black/20" variant="flat" color="default" radius="lg" size="sm" onClick={favHandler} >
@@ -112,7 +125,7 @@ const MovieComponent = (props) => {
               </Button>
 
 
-            </CardFooter>
+            </CardFooter> */}
           </Card>
         </div>
         

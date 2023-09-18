@@ -24,9 +24,10 @@ import { useDispatch } from "react-redux";
 
 const App = () => {
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     console.log('running useEffect')
+
     fetch('/user/session', {
       method: 'GET',
       credentials: 'include'
@@ -34,12 +35,12 @@ const App = () => {
       .then(data => data.json())
       .then((data) => {
         if (data.watchList) {
-          dispatch(setUser(data))
+          dispatch(setUser(data));
         }
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }, []);
 
 

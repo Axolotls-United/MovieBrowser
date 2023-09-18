@@ -4,7 +4,7 @@ import React from "react";
 import WatchlistComponent from "../components/WatchlistComponent.jsx";
 
 import { useSelector } from "react-redux";
-
+import { deleteWatchList } from '../reducers/userSlice.js'
 
 const WatchlistContainer = (props) => {
 
@@ -13,7 +13,14 @@ const WatchlistContainer = (props) => {
 
   return (
     <div className="watchlist-container">
-      {watchList.map(movie => <WatchlistComponent key={crypto.randomUUID()} title={movie.title} image={movie.image}/>)}
+      {watchList.map(movie => 
+        <WatchlistComponent 
+          key={crypto.randomUUID()} 
+          deleteWatchList={deleteWatchList}
+          username={props.username} 
+          title={movie.title} 
+          image={movie.image}
+        />)}
     </div>
   )
 }

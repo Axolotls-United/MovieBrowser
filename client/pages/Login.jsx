@@ -5,10 +5,10 @@
 import React from "react";
 
 
-import {Input} from "@nextui-org/react";
+import {Input, user} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUsername, setPassword, setUser } from "../reducers/userSlice";
+import { setUsername, resetUsername, setPassword, resetPassword, setUser} from "../reducers/userSlice";
 import Signup from "./Signup.jsx";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -40,9 +40,16 @@ const Login = () => {
         password
       })
     }).then(data => data.json());
-    dispatch(setUser(user));
-    console.log(user);
-    redirectProfile();
+
+    if (user.err) {
+      dispatch(resetUsername());
+      dispatch(resetPassword());
+      alert('Incorrect username or password');
+    } else {
+      dispatch(setUser(user));
+      console.log('USER USER:', user);
+      redirectProfile();
+    }
   }
 
   const redirectSignup = () => {
@@ -56,12 +63,13 @@ const Login = () => {
   }
 
   return (
-    <>
+    <div>
     <Input
       isRequired
       type="username"
       label="Username"
       className="max-w-xs"
+      value={username}
       onChange={(e) => dispatchUsername(e)}
     />
     <Input
@@ -70,15 +78,17 @@ const Login = () => {
       placeholder="Enter your password"
       type= "password"
       className="max-w-xs"
+      value={password}
       onChange={(e) => dispatchPassword(e)}
     />
+  
     <Button color="primary" onClick={requestLogin}>
       Login
     </Button>
     <Button color="primary" onClick={redirectSignup}>
       Sign Up
     </Button>
-    </>
+    </div>
     
   )
 }

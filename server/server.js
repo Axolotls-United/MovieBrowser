@@ -1,16 +1,16 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-
 const apiRouter = require('./routes/apiRouter');
 const userRouter = require('./routes/userRouter');
-
+const cookieParser = require('cookie-parser');
 //tell express to parse data
 app.use(express.json());
 
+
 //serve static files from public directory  
 app.use(express.static('public'));
-
+app.use(cookieParser());
 //router for API calls to OMDB
 app.use('/api', apiRouter);
 
